@@ -1,0 +1,78 @@
+{
+  "uuid": "f7920e9d-c933-444b-b909-c0d49beb0e67",
+  "lastMigration": 27,
+  "name": "Mockoon spotify bis",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "routes": [
+    {
+      "uuid": "9d63dfd2-365e-4849-bd31-52a793bafa8c",
+      "documentation": "Liste l'ensemble des musiques",
+      "method": "get",
+      "endpoint": "musiques",
+      "responses": [
+        {
+          "uuid": "64bbad26-f427-4301-9783-3afb9314dca8",
+          "body": "[\n    {{#repeat 15}} \n    {\n        \"artiste\": [\n            \"{{ faker 'datatype.uuid'}}\",\n            \"{{ faker 'datatype.uuid'}}\"\n        ],\n        \"titre\": \"{{ faker 'music.genre'}}\",\n        \"pochetteUrl\": \"{{ faker 'image.nightlife'}}\",\n    }\n    {{/repeat}}\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "folders": [],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "9d63dfd2-365e-4849-bd31-52a793bafa8c"
+    }
+  ]
+}
