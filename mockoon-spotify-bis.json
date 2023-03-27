@@ -15,11 +15,16 @@
       "responses": [
         {
           "uuid": "64bbad26-f427-4301-9783-3afb9314dca8",
-          "body": "[\n    {{#repeat 15}} \n    {\n        \"artiste\": [\n            \"{{ faker 'datatype.uuid'}}\",\n            \"{{ faker 'datatype.uuid'}}\"\n        ],\n        \"titre\": \"{{ faker 'music.genre'}}\",\n        \"pochetteUrl\": \"{{ faker 'image.nightlife'}}\",\n    }\n    {{/repeat}}\n]",
+          "body": "[\n    {{#repeat 15}} \n    {\n        \"id\": \"{{ faker 'datatype.uuid'}}\",\n        \"artiste\": [\n            \"{{ faker 'name.firstName'}}\",\n            \"{{ faker 'name.firstName'}}\"\n        ],\n        \"titre\": \"{{ faker 'music.genre'}}\",\n        \"pochetteUrl\": \"{{ faker 'image.nightlife'}}\"\n    }\n    {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
-          "headers": [],
+          "headers": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ],
           "filePath": "",
           "sendFileAsBody": false,
           "rules": [],
@@ -53,6 +58,18 @@
     {
       "key": "Content-Type",
       "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
     }
   ],
   "proxyReqHeaders": [
