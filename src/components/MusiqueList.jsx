@@ -7,10 +7,17 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-const { getListMusiques } = MusiqueApi;
 import ListItemButton from "@mui/material/ListItemButton";
+import { useNavigate } from "react-router-dom";
+import PATH from "../constantes/Path.js";
+
+const { getListMusiques } = MusiqueApi;
+
+const { MUSIQUE_DETAIL_PATH } = PATH;
 
 const MusiqueList = () => {
+  const navigate = useNavigate();
+
   const { isLoading, isError, data, error } = useQuery(
     "musiques",
     getListMusiques
@@ -29,9 +36,7 @@ const MusiqueList = () => {
       {data?.map((musique) => (
         <ListItem key={musique?.id}>
           <ListItemButton
-            onClick={() => {
-              alert("clicked");
-            }}
+            onClick={() => navigate(`${MUSIQUE_DETAIL_PATH}/${musique?.id}`)}
           >
             <ListItemAvatar>
               <Avatar alt={musique?.pochetteUrl} src={musique?.pochetteUrl} />
