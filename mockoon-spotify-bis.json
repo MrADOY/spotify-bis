@@ -15,7 +15,7 @@
       "responses": [
         {
           "uuid": "64bbad26-f427-4301-9783-3afb9314dca8",
-          "body": "[\n    {{#repeat 15}} \n    {\n        \"id\": \"{{ faker 'datatype.uuid'}}\",\n        \"artiste\": [\n            \"{{ faker 'name.firstName'}}\",\n            \"{{ faker 'name.firstName'}}\"\n        ],\n        \"titre\": \"{{ faker 'music.genre'}}\",\n        \"pochetteUrl\": \"{{ faker 'image.nightlife'}}\"\n    }\n    {{/repeat}}\n]",
+          "body": "[\n    {{#repeat 15}}     \n    {\n        \"id\": \"{{ faker 'datatype.uuid'}}\",\n        \"artiste\": [\n            \"{{ faker 'name.firstName'}}\",\n            \"{{ faker 'name.firstName'}}\"\n        ],\n        \"titre\": \"{{ faker 'music.genre'}}\",\n        \"pochetteUrl\": \"{{ faker 'image.nightlife'}}\"\n    }    \n    {{/repeat}}\n]",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -39,6 +39,34 @@
       "enabled": true,
       "responseMode": null,
       "type": "http"
+    },
+    {
+      "uuid": "3790e828-e57e-414a-a989-0bc60a7bb6eb",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "musiques/:idMusique",
+      "responses": [
+        {
+          "uuid": "76bea50a-9438-4235-93b1-1682fffe77f5",
+          "body": "{\n  \"id\": \"{{ faker 'datatype.uuid'}}\",\n  \"artiste\": [\n    {\n      \"prenom\": \"{{ faker 'name.firstName'}}\",\n      \"nom\": \"{{ faker 'name.lastName'}}\",\n      \"photo\": \"{{ faker 'image.people'}}\"\n    },\n    {\n      \"prenom\": \"{{ faker 'name.firstName'}}\",\n      \"nom\": \"{{ faker 'name.lastName'}}\",\n      \"photo\": \"{{ faker 'image.people'}}\"\n    }\n  ],\n  \"titre\": \"{{ faker 'music.genre'}}\",\n  \"pochetteUrl\": \"{{ faker 'image.nightlife'}}\",\n  \"urlFichier\": \"https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
     }
   ],
   "proxyMode": false,
@@ -90,6 +118,10 @@
     {
       "type": "route",
       "uuid": "9d63dfd2-365e-4849-bd31-52a793bafa8c"
+    },
+    {
+      "type": "route",
+      "uuid": "3790e828-e57e-414a-a989-0bc60a7bb6eb"
     }
   ]
 }
