@@ -6,9 +6,11 @@ const getListMusiques = async () => {
 };
 
 const getMusiqueDetail = async (musiqueId) => {
-    const response = await axios.get(`http://localhost:3002/musiques/${musiqueId}`);
-    return response.data;
-  }; 
+  const response = await axios.get(
+    `http://localhost:3002/musiques/${musiqueId}`
+  );
+  return response.data;
+};
 
 const MusiqueApi = {
   getListMusiques,
