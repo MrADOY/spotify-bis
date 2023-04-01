@@ -49,7 +49,7 @@
       "responses": [
         {
           "uuid": "76bea50a-9438-4235-93b1-1682fffe77f5",
-          "body": "{\n  \"id\": \"{{ faker 'datatype.uuid'}}\",\n  \"artiste\": [\n    {\n      \"prenom\": \"{{ faker 'name.firstName'}}\",\n      \"nom\": \"{{ faker 'name.lastName'}}\",\n      \"photo\": \"{{ faker 'image.people'}}\"\n    },\n    {\n      \"prenom\": \"{{ faker 'name.firstName'}}\",\n      \"nom\": \"{{ faker 'name.lastName'}}\",\n      \"photo\": \"{{ faker 'image.people'}}\"\n    }\n  ],\n  \"titre\": \"{{ faker 'music.genre'}}\",\n  \"pochetteUrl\": \"{{ faker 'image.nightlife'}}\",\n  \"urlFichier\": \"https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3\"\n}",
+          "body": "{\n  \"id\": \"{{ faker 'datatype.uuid'}}\",\n  \"artiste\": [\n    {\n      \"prenom\": \"{{ faker 'name.firstName'}}\",\n      \"nom\": \"{{ faker 'name.lastName'}}\",\n      \"photo\": \"{{ faker 'image.people'}}\",\n      \"id\": \"{{ faker 'datatype.uuid'}}\"\n    },\n    {\n      \"prenom\": \"{{ faker 'name.firstName'}}\",\n      \"nom\": \"{{ faker 'name.lastName'}}\",\n      \"photo\": \"{{ faker 'image.people'}}\",\n      \"id\": \"{{ faker 'datatype.uuid'}}\"\n    }\n  ],\n  \"titre\": \"{{ faker 'music.genre'}}\",\n  \"pochetteUrl\": \"{{ faker 'image.nightlife'}}\",\n  \"urlFichier\": \"https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_2MB_MP3.mp3\"\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",

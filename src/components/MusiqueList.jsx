@@ -35,8 +35,8 @@ const MusiqueList = () => {
   return (
     <List>
       {data?.map((musique) => (
-        <>
-          <ListItem key={musique?.id}>
+        <React.Fragment key={musique?.id}>
+          <ListItem>
             <ListItemButton
               onClick={() => navigate(MUSIQUE_DETAIL_PATH(musique?.id))}
             >
@@ -61,7 +61,7 @@ const MusiqueList = () => {
             </ListItemButton>
           </ListItem>
           <Divider />
-        </>
+        </React.Fragment>
       ))}
     </List>
   );

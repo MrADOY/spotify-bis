@@ -35,7 +35,7 @@ const MusiqueDetailPage = () => {
       <Divider />
 
       {data.artiste.map((artiste) => (
-        <Box sx={{ mt: 1, mb: 1 }}>
+        <Box sx={{ mt: 1, mb: 1 }} key={artiste?.id}>
           <Stack
             direction="row"
             justifyContent="flex-start"

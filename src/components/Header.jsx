@@ -9,38 +9,33 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import Path from "../constantes/Path";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const pages = [
-  { nom: "Musique", path: Path.MUSIQUE_PATH },
-  { nom: "Playlist", path: Path.MUSIQUE_PATH },
+  { nom: "Musique", path: Path.MUSIQUE_PATH, secured: true },
+  { nom: "Playlist", path: Path.MUSIQUE_PATH, secured: true },
+  { nom: "Profil", path: Path.PROFIL, secured: true },
 ];
-const settings = ["Account", "Logout"];
 const titre = "SPOTIFY";
 
 function Header() {
   const navigate = useNavigate();
+  const { user, isAuthenticated, isLoading, logout, loginWithRedirect } =
+    useAuth0();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -97,13 +92,17 @@ function Header() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page?.nom} onClick={handleCloseNavMenu}>
-                  <Button onClick={() => navigate(page?.path)}>
-                    {page?.nom}
-                  </Button>
-                </MenuItem>
-              ))}
+              {pages
+                .filter(
+                  (page) => !page.secured || (page.secured && isAuthenticated)
+                )
+                .map((page) => (
+                  <MenuItem key={page?.nom} onClick={handleCloseNavMenu}>
+                    <Button onClick={() => navigate(page?.path)}>
+                      {page?.nom}
+                    </Button>
+                  </MenuItem>
+                ))}
             </Menu>
           </Box>
           <PlayCircleOutlineIcon
@@ -128,49 +127,51 @@ function Header() {
             {titre}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page?.nom}
-                onClick={() => {
-                  handleCloseNavMenu();
-                  navigate(page?.path);
-                }}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page?.nom}
-              </Button>
-            ))}
+            {pages
+              .filter(
+                (page) => !page.secured || (page.secured && isAuthenticated)
+              )
+              .map((page) => (
+                <Button
+                  key={page?.nom}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate(page?.path);
+                  }}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {page?.nom}
+                </Button>
+              ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          {isAuthenticated ? (
+            <>
+              <Box sx={{ flexGrow: 0 }}>
+                <Avatar alt={user?.name} src={user?.picture} />
+              </Box>
+              <Box sx={{ flexGrow: 0 }}>
+                <IconButton
+                  onClick={() =>
+                    logout({
+                      logoutParams: { returnTo: window.location.origin },
+                    })
+                  }
+                >
+                  <LogoutIcon />
+                </IconButton>
+              </Box>
+            </>
+          ) : (
+            <Box sx={{ flexGrow: 0 }}>
+              <Button
+                onClick={() => loginWithRedirect()}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Se connecter
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

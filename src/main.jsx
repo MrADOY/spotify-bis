@@ -5,8 +5,9 @@ import MusiquePage from "./components/MusiquePage";
 import ErrorPage from "./components/ErrorPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import MusiqueDetailPage from "./components/MusiqueDetailPage";
-import Header from "./components/Header";
 import Root from "./components/Root";
+import { Auth0Provider } from "@auth0/auth0-react";
+import Profil from "./components/Profil";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         path: "musiques",
         element: <MusiquePage />,
       },
+      {
+        path: "profil",
+        element: <Profil />,
+      },
     ],
   },
 ]);
@@ -30,8 +35,16 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <Auth0Provider
+      domain="dev-f0azx6aq.us.auth0.com"
+      clientId="A0Mlx10Z3lp1GCTUS5bB8GMLCK3xIDSz"
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
+    >
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </Auth0Provider>
   </React.StrictMode>
 );
