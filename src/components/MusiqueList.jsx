@@ -38,7 +38,7 @@ const MusiqueList = () => {
         <>
           <ListItem key={musique?.id}>
             <ListItemButton
-              onClick={() => navigate(`${MUSIQUE_DETAIL_PATH}/${musique?.id}`)}
+              onClick={() => navigate(MUSIQUE_DETAIL_PATH(musique?.id))}
             >
               <ListItemAvatar>
                 <Avatar alt={musique?.pochetteUrl} src={musique?.pochetteUrl} />

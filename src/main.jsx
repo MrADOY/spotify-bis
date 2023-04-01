@@ -5,16 +5,24 @@ import MusiquePage from "./components/MusiquePage";
 import ErrorPage from "./components/ErrorPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import MusiqueDetailPage from "./components/MusiqueDetailPage";
+import Header from "./components/Header";
+import Root from "./components/Root";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MusiquePage />,
+    element: <Root />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "musique/:musiqueId",
-    element: <MusiqueDetailPage />,
+    children: [
+      {
+        path: "musiques/:musiqueId",
+        element: <MusiqueDetailPage />,
+      },
+      {
+        path: "musiques",
+        element: <MusiquePage />,
+      },
+    ],
   },
 ]);
 
