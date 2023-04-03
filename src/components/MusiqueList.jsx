@@ -47,12 +47,7 @@ const MusiqueList = () => {
                 primary={musique?.titre}
                 secondary={
                   <React.Fragment>
-                    <Typography
-                      sx={{ display: "inline" }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
+                    <Typography sx={{ display: "inline" }} component="span">
                       {musique?.artiste?.join("-")}
                     </Typography>
                   </React.Fragment>
