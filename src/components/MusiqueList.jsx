@@ -11,6 +11,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { useNavigate } from "react-router-dom";
 import PATH from "../constantes/Path.js";
 import Divider from "@mui/material/Divider";
+import Recherche from "./Recherche.jsx";
 
 const { getListMusiques } = MusiqueApi;
 
@@ -33,32 +34,38 @@ const MusiqueList = () => {
   }
 
   return (
-    <List>
-      {data?.map((musique) => (
-        <React.Fragment key={musique?.id}>
-          <ListItem>
-            <ListItemButton
-              onClick={() => navigate(MUSIQUE_DETAIL_PATH(musique?.id))}
-            >
-              <ListItemAvatar>
-                <Avatar alt={musique?.pochetteUrl} src={musique?.pochetteUrl} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={musique?.titre}
-                secondary={
-                  <React.Fragment>
-                    <Typography sx={{ display: "inline" }} component="span">
-                      {musique?.artiste?.join("-")}
-                    </Typography>
-                  </React.Fragment>
-                }
-              />
-            </ListItemButton>
-          </ListItem>
-          <Divider />
-        </React.Fragment>
-      ))}
-    </List>
+    <>
+      <Recherche></Recherche>
+      <List>
+        {data?.map((musique) => (
+          <React.Fragment key={musique?.id}>
+            <ListItem>
+              <ListItemButton
+                onClick={() => navigate(MUSIQUE_DETAIL_PATH(musique?.id))}
+              >
+                <ListItemAvatar>
+                  <Avatar
+                    alt={musique?.pochetteUrl}
+                    src={musique?.pochetteUrl}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={musique?.titre}
+                  secondary={
+                    <React.Fragment>
+                      <Typography sx={{ display: "inline" }} component="span">
+                        {musique?.artiste?.join("-")}
+                      </Typography>
+                    </React.Fragment>
+                  }
+                />
+              </ListItemButton>
+            </ListItem>
+            <Divider />
+          </React.Fragment>
+        ))}
+      </List>
+    </>
   );
 };
 
